@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Item
 from .forms import ItemForm
+from django.views.generic.list import ListView
 
 
 
@@ -14,6 +15,15 @@ def index(request):
         'item_list': item_list,
     }
     return render(request, "food/index.html", context)
+
+#CLASS BASED VIEWS
+class IndexClassView(ListView):
+    model = Item
+    template_name = 'food/index.html'
+    context_object_name = 'item_list'
+
+
+
 
 def item(request):
     return HttpResponse('')
